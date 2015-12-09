@@ -13,3 +13,4 @@ statsmodels
 scikit-learn
 fabric
 pyyaml
+cython
