@@ -14,7 +14,7 @@ cython
 beautifulsoup4
 boto
 Flask
-HTSeq
+# HTSeq
 Jinja2
 MarkupSafe
 # PIL
@@ -64,7 +64,7 @@ logilab-common
 lxml
 matplotlib-venn
 memory-profiler
-mercurial
+# mercurial
 mistune
 mock
 mpld3

@@ -9,11 +9,11 @@
             "type": "amazon-ebs",
             "access_key": "{{user `aws_access_key`}}",
             "secret_key": "{{user `aws_secret_key`}}",
-            "region": "us-east-1",
-            "source_ami": "ami-9711c6fc",
+            "region": "us-west-2",
+            "source_ami": "ami-f35e56c3",
             "ssh_username": "ec2-user",
             "ami_name": "CentOS 6.6 - SageCommonCompute {{timestamp}}",
-            "instance_type": "c3.4xlarge"
+            "instance_type": "t2.large"
         }
 
     ],
@@ -37,25 +37,21 @@
         {
             "type": "file",
             "source": "./python_requirements.txt",
-            "destination": "/home/ec2-user"
+            "destination": "/home/ec2-user/"
         },
         {
-            "type": "shell",
-            "scripts": ["user_provisioner.sh"],
-            "pause_before": "10s",
-            "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
-            "only": ["amazon-ebs"]
+            "type": "file",
+            "source": "./python3_requirements.txt",
+            "destination": "/home/ec2-user/"
+        },
+        {
+            "type": "file",
+            "source": "./rserver.conf",
+            "destination": "/home/ec2-user/"
         },
         {
             "type": "shell",
             "scripts": ["software_provisioner.sh"],
-            "pause_before": "10s",
-            "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
-            "only": ["amazon-ebs"]
-        },
-        {
-            "type": "shell",
-            "scripts": ["jenkins_provisioner.sh"],
             "pause_before": "10s",
             "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
             "only": ["amazon-ebs"]
@@ -67,16 +63,23 @@
             "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
             "only": ["amazon-ebs"]
         },
-        {
+	{
             "type": "shell",
             "scripts": ["r_provisioner.sh"],
             "pause_before": "10s",
             "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
             "only": ["amazon-ebs"]
         },
-        {
+	{
             "type": "shell",
-            "scripts": ["cloudbio_provisioner.sh"],
+            "scripts": ["x2go_provisioner.sh"],
+            "pause_before": "10s",
+            "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
+            "only": ["amazon-ebs"]
+        },
+	{
+            "type": "shell",
+            "scripts": ["rstudio_provisioner.sh"],
             "pause_before": "10s",
             "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
             "only": ["amazon-ebs"]

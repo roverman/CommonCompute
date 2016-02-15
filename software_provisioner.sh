@@ -33,9 +33,9 @@ cp -R /home/ec2-user/modulefiles/* /usr/share/Modules/modulefiles/
 # OpenBlas
 mkdir /root/src/OpenBlas
 cd /root/src/OpenBlas
-wget http://github.com/xianyi/OpenBLAS/archive/v0.2.14.tar.gz
-tar xzf v0.2.14.tar.gz
-cd OpenBLAS-0.2.14/
+wget http://github.com/xianyi/OpenBLAS/archive/v0.2.15.tar.gz
+tar xzf v0.2.15.tar.gz
+cd OpenBLAS-0.2.15/
 make BINARY=64 FC=gfortran USE_THREAD=1 && make install
 
 cd /root/src
