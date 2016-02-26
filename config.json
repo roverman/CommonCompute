@@ -10,10 +10,10 @@
             "access_key": "{{user `aws_access_key`}}",
             "secret_key": "{{user `aws_secret_key`}}",
             "region": "us-east-1",
-            "source_ami": "ami-9711c6fc",
-            "ssh_username": "ec2-user",
-            "ami_name": "CentOS 6.6 - SageCommonCompute {{timestamp}}",
-            "instance_type": "c3.4xlarge"
+            "source_ami": "ami-682e1b02",
+            "ssh_username": "centos",
+            "ami_name": "CentOS 7.2 - SageCommonCompute {{timestamp}}",
+            "instance_type": "c4.xlarge"
         }
 
     ],
@@ -22,22 +22,22 @@
         {
             "type": "file",
             "source": "./modulefiles",
-            "destination": "/home/ec2-user"
+            "destination": "/home/centos"
         },
         {
             "type": "file",
             "source": "./numpy",
-            "destination": "/home/ec2-user"
+            "destination": "/home/centos"
         },
         {
             "type": "file",
             "source": "./yum",
-            "destination": "/home/ec2-user"
+            "destination": "/home/centos"
         },
         {
             "type": "file",
             "source": "./python_requirements.txt",
-            "destination": "/home/ec2-user"
+            "destination": "/home/centos"
         },
         {
             "type": "shell",
@@ -80,14 +80,6 @@
             "pause_before": "10s",
             "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
             "only": ["amazon-ebs"]
-        },
-        {
-            "type": "shell",
-            "inline": ["/usr/local/sbin/ami_cleanup.sh"],
-            "pause_before": "10s",
-            "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
-            "only": ["amazon-ebs"]
         }
-
     ]
 }
